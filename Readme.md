@@ -1,28 +1,36 @@
 # Prueba PNN
-#### A test Django application with production-level docker setup.
+### Prueba de aplicación Django Rest Framework.
 
-This project is to document production-level Docker setup. Please note that Django application is rudimentary and not fit for production.
+Este proyecto es rudimentario y básico, el cual puede no validar todas las caracteristicas esperadas del mismo.
 
-## Docker Setup
-Detailed documentation of Docker setup.
-It discusses in detail `Dockerfile`, `entrypoint.sh` and `start.sh`
+## Setup Docker
+La implementación de este proyecto se realiza en Docker y los archivos `Dockerfile`, `entrypoint.sh` y `start.sh`, implementan toda la lógica de construcción y comunicación.
 
 #### Useful Commands
-To be run from root of the project.
+Todos los comandos deben ser ejecutados desde la ráiz del proyecto.
 
-Note: Before running commands, copy `.sample-env` into `.env` in the same level `dockerapp/docker/` and fill all parameters.
-1. Build docker image with tag 'development':
-`docker build -t dockerapp:development -f docker/Dockerfile .`
+## Nota: Antes de ejecutar los comandos, copie el archivo `.sample-env` en `.env` en la misma carpeta `docker/` y dilicencie todos los parametros según la configuración deseada.
 
-2. Start all containers including essential services(PostgreSQL and Redis):  `docker-compose -f docker/docker-compose.yml up`
+1. Construya la imagen docker con el tag 'development': `docker build -t dockerapp:development -f docker/Dockerfile .`
 
-3. Stop all containers: `docker-compose -f docker/docker-compose.yml down`
+2. Inicie los contenedores (Postgis y Django):  `docker-compose -f docker/docker-compose.yml up`
 
-4. Stop all containers and delete volumes: `docker-compose -f docker/docker-compose.yml down -v`
+3. Detener todos los contenedores: `docker-compose -f docker/docker-compose.yml down`
 
-## Django application details
-1. The Django application has a api REST linked to url `/intersect/dpto` filter the intersect Layer 1 and 2.
+4. Detener todos los contenedores y borrar los volumenes: `docker-compose -f docker/docker-compose.yml down -v`
+
+## Detalles del proyecto
+
+1. La aplicación Django es una API REST que consume datos de dos servicios web geográficos, los almacena y realiza intersecciones entre los mismos:
+    - La URL `/intersect/area/` recupera todas las intersecciones entre las dos capas de información.
+    - La URL `/intersect/area/?id=` recupera todas las intersecciones entre las dos capas de información, filtradas por código del área especial.
+    - La URL `/intersect/dpto/` recupera todas las intersecciones entre las dos capas de información.
+    - La URL `/intersect/dpto/?coddane=` recupera todas las intersecciones entre las dos capas de información, filtradas por código DANE de departamentos.
 
 
-Using `chupaESRI` [https://github.com/johnjreiser/chupaESRI]
+## Componentes utilizados
+Para la construcción de este proyecto se utilizaron diferentes fuentes de imagenes y código fuente:
+1. Imagen Docker postgis/postgis [https://hub.docker.com/r/postgis/postgis]
+2. Imagen Python 3.9.9-slim-buster [https://hub.docker.com/_/python]
+3. Proyecto para la recuperación de datos REST y almacenamiento en PostGIS `chupaESRI` [https://github.com/johnjreiser/chupaESRI] (La versión del código a utilizar es la incluida en este proyecto, pues se optimizaron cosas y solucionaron algunos bugs no reportados).
  
