@@ -4,7 +4,7 @@
 This project is to document production-level Docker setup. Please note that Django application is rudimentary and not fit for production.
 
 ## Docker Setup
-Detailed documentation of Docker setup can be found in above blog.
+Detailed documentation of Docker setup.
 It discusses in detail `Dockerfile`, `entrypoint.sh` and `start.sh`
 
 #### Useful Commands
