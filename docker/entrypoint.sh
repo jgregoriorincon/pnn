@@ -44,12 +44,12 @@ from psycopg2.errors import OperationalError
 try:
 
     print("Clean Geometry Layers")
-    sql_updates = "UPDATE public.%s SET shape=ST_Multi(ST_CollectionExtract(ST_MakeValid(shape), 3)) WHERE NOT ST_IsValid(shape)"
 
     with connect(dbname="${POSTGRES_DBNAME}", user="${POSTGRES_USER}", password="${POSTGRES_PASS}", host="${PG_HOST}", port="${PG_PORT}") as conn:
         conn.autocommit = True
         with conn.cursor() as curs:
-            curs.execute(sql_updates, [${NAME_LAYER1}, ${NAME_LAYER2}])
+            curs.execute("UPDATE public.${NAME_LAYER1} SET shape=ST_Multi(ST_CollectionExtract(ST_MakeValid(shape), 3)) WHERE NOT ST_IsValid(shape)")
+            curs.execute("UPDATE public.${NAME_LAYER2} SET shape=ST_Multi(ST_CollectionExtract(ST_MakeValid(shape), 3)) WHERE NOT ST_IsValid(shape)")            
 
 except OperationalError:
     sys.exit(-1)
