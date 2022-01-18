@@ -7,7 +7,13 @@ PG_PORT=
 SECRET_KEY=
 DEBUG=True
 ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-URL_LAYER1=https://services6.arcgis.com/CagbVUK5R9TktP2I/arcgis/rest/services/RESGUARDO_INDIGENA_LEGALIZADO/FeatureServer/0/query
-NAME_LAYER1=resguardo
-URL_LAYER2=https://services6.arcgis.com/CagbVUK5R9TktP2I/ArcGIS/rest/services/Departamentos/FeatureServer/0/query
-NAME_LAYER2=departamentos
+
+URL_LAYER1=https://services6.arcgis.com/CagbVUK5R9TktP2I/ArcGIS/rest/services/Departamentos/FeatureServer/0/query
+NAME_LAYER1=departamentos
+FIELD_COD_LAYER1=codigo_departamento
+FIELD_NAME_LAYER1=nombre_departamento
+
+URL_LAYER2=https://services6.arcgis.com/CagbVUK5R9TktP2I/arcgis/rest/services/RESGUARDO_INDIGENA_LEGALIZADO/FeatureServer/0/query
+NAME_LAYER2=resguardo
+FIELD_COD_LAYER2=id_resguardo
+FIELD_NAME_LAYER2=nombre_resguardo_indigena
