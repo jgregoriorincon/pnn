@@ -16,8 +16,8 @@ try:
         dbname="${POSTGRES_DBNAME}",
         user="${POSTGRES_USER}",
         password="${POSTGRES_PASS}",
-        host="${PG_HOST}",
-        port="${PG_PORT}",
+        host="${POSTGRES_HOST}",
+        port="${POSTGRES_PORT}",
     )
 except OperationalError:
     sys.exit(-1)
@@ -30,9 +30,9 @@ until postgres_ready; do
 done
 >&2 echo "PostgreSQL is available"
 
-python3 load_data/chupaESRI.py ${URL_LAYER1} "host=${PG_HOST} dbname=${POSTGRES_DBNAME} user=${POSTGRES_USER} password=${POSTGRES_PASS}" "public.${NAME_LAYER1}"
+python3 load_data/chupaESRI.py ${URL_LAYER1} "host=${POSTGRES_HOST} dbname=${POSTGRES_DBNAME} user=${POSTGRES_USER} password=${POSTGRES_PASS}" "public.${NAME_LAYER1}"
 
-python3 load_data/chupaESRI.py ${URL_LAYER2} "host=${PG_HOST} dbname=${POSTGRES_DBNAME} user=${POSTGRES_USER} password=${POSTGRES_PASS}" "public.${NAME_LAYER2}"
+python3 load_data/chupaESRI.py ${URL_LAYER2} "host=${POSTGRES_HOST} dbname=${POSTGRES_DBNAME} user=${POSTGRES_USER} password=${POSTGRES_PASS}" "public.${NAME_LAYER2}"
 
 geometry_ready() {
     python << END
@@ -45,7 +45,7 @@ try:
 
     print("Clean Geometry Layers")
 
-    with connect(dbname="${POSTGRES_DBNAME}", user="${POSTGRES_USER}", password="${POSTGRES_PASS}", host="${PG_HOST}", port="${PG_PORT}") as conn:
+    with connect(dbname="${POSTGRES_DBNAME}", user="${POSTGRES_USER}", password="${POSTGRES_PASS}", host="${POSTGRES_HOST}", port="${POSTGRES_PORT}") as conn:
         conn.autocommit = True
         with conn.cursor() as curs:
             curs.execute("UPDATE public.${NAME_LAYER1} SET shape=ST_Multi(ST_CollectionExtract(ST_MakeValid(shape), 3)) WHERE NOT ST_IsValid(shape)")
