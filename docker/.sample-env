@@ -1,0 +1,13 @@
+POSTGRES_USER=
+POSTGRES_PASS=
+POSTGRES_DBNAME=
+DATABASE=
+PG_HOST=
+PG_PORT=
+SECRET_KEY=
+DEBUG=True
+ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+URL_LAYER1=https://services6.arcgis.com/CagbVUK5R9TktP2I/arcgis/rest/services/RESGUARDO_INDIGENA_LEGALIZADO/FeatureServer/0/query
+NAME_LAYER1=resguardo
+URL_LAYER2=https://services6.arcgis.com/CagbVUK5R9TktP2I/ArcGIS/rest/services/Departamentos/FeatureServer/0/query
+NAME_LAYER2=departamentos

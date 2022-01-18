@@ -1,0 +1,37 @@
+version: "3.8"
+
+volumes:
+    app_data:
+        name: app_data
+
+networks:
+    pnn-api:
+        driver: bridge
+
+services:
+    django: &django
+        image: dockerapp:development
+        networks:
+            - pnn-api
+        command: /app/docker/start.sh server
+        depends_on:
+            - postgis
+        env_file:
+            - .env
+        ports:
+            - 8000:8000
+
+    postgis:
+        image: postgis/postgis
+        networks:
+            - pnn-api
+        ports:
+            - 25432:5432        
+        volumes:
+            - app_data:/var/lib/postgresql/data
+        env_file:
+            - .env   
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASS}
+            POSTGRES_DB: ${POSTGRES_DBNAME}
