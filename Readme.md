@@ -21,7 +21,7 @@ Note: Before running commands, copy `.sample-env` into `.env` in the same level 
 4. Stop all containers and delete volumes: `docker-compose -f docker/docker-compose.yml down -v`
 
 ## Django application details
-The Django application has a api REST linked to url `/task-trigger/`, which picks a random integer between 1 and 100 and send to celery task(defined in `dockerapp/core/tasks.py`) which count next five integer at interval of one second.
+1. The Django application has a api REST linked to url `/intersect/dpto` filter the intersect Layer 1 and 2.
 
 
 Using `chupaESRI` [https://github.com/johnjreiser/chupaESRI]
