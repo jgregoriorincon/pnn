@@ -22,15 +22,13 @@ Todos los comandos deben ser ejecutados desde la ráiz del proyecto.
 ## Detalles del proyecto
 
 1. La aplicación Django es una API REST que consume datos de dos servicios web geográficos, los almacena y realiza intersecciones entre los mismos:
-    - La URL `/intersect/area/` recupera todas las intersecciones entre las dos capas de información.
-    - La URL `/intersect/area/?id=` recupera todas las intersecciones entre las dos capas de información, filtradas por código del área especial.
-    - La URL `/intersect/dpto/` recupera todas las intersecciones entre las dos capas de información.
-    - La URL `/intersect/dpto/?coddane=` recupera todas las intersecciones entre las dos capas de información, filtradas por código DANE de departamentos.
+    - La URL `/intersect/area/<idarea>` recupera las intersecciones entre las dos capas de información, filtradas por código del área especial, p.ej. http://localhost:8000/intersect/area/10155.
+    - La URL `/intersect/dpto/<coddane>` recupera las intersecciones entre las dos capas de información, filtradas por código DANE de departamentos, p.ej. http://localhost:8000/intersect/dpto/54.
 
 
 ## Componentes utilizados
 Para la construcción de este proyecto se utilizaron diferentes fuentes de imagenes y código fuente:
-1. Imagen Docker postgis/postgis [https://hub.docker.com/r/postgis/postgis]
-2. Imagen Python 3.9.9-slim-buster [https://hub.docker.com/_/python]
-3. Proyecto para la recuperación de datos REST y almacenamiento en PostGIS `chupaESRI` [https://github.com/johnjreiser/chupaESRI] (La versión del código a utilizar es la incluida en este proyecto, pues se optimizaron cosas y solucionaron algunos bugs no reportados).
+1. Imagen Docker [postgis/postgis](https://hub.docker.com/r/postgis/postgis)
+2. Imagen Docker [Python 3.9.9-slim-buster](https://hub.docker.com/_/python)
+3. Proyecto para la recuperación de datos REST y almacenamiento en PostGIS *[chupaESRI](https://github.com/johnjreiser/chupaESRI)* (La versión del código a utilizar es la incluida en este proyecto, pues se optimizaron cosas y solucionaron algunos bugs no reportados).
  

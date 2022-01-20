@@ -5,7 +5,7 @@ POSTGRES_HOST=postgis
 POSTGRES_PORT=5432
 SECRET_KEY=ClaveSecreta1234567890
 DEBUG=True
-ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+ALLOWED_HOSTS=localhost 127.0.0.1 0.0.0.0 [::1]
 
 URL_LAYER1=https://services6.arcgis.com/CagbVUK5R9TktP2I/ArcGIS/rest/services/Departamentos/FeatureServer/0/query
 NAME_LAYER1=departamentos
@@ -16,3 +16,5 @@ URL_LAYER2=https://services6.arcgis.com/CagbVUK5R9TktP2I/arcgis/rest/services/RE
 NAME_LAYER2=resguardo
 FIELD_COD_LAYER2=id_resguardo
 FIELD_NAME_LAYER2=nombre_resguardo_indigena
+
+URL_PRINT=https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task

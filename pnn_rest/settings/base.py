@@ -20,7 +20,7 @@ DJANGO_APPS = [
 
 THIRD_APPS = ['rest_framework',]
 
-LOCAL_APPS = ['apps.intersect',]
+LOCAL_APPS = ['apps.intersect', 'apps.print']
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + LOCAL_APPS
 
