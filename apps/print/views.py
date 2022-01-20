@@ -1,9 +1,10 @@
+from multiprocessing import context
 import environ
 import requests
+import json
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.http import JsonResponse
 
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(env_file="docker/.env")
@@ -11,9 +12,20 @@ URL_PRINT = env("URL_PRINT")
 
 def index(request):
     jsonPrintParameters = print_parameters(request)
-    return jsonPrintParameters
+    for parameter in jsonPrintParameters["parameters"]:
+        if parameter["name"] == "Layout_Template":
+            plantillas = parameter["choiceList"]
+            print(plantillas)
+    
+    context = {
+        "plantillas": plantillas
+    }
+
+    if(request.GET.get('btnImprimir')):
+        print(request.GET.get('textDPI'))
+
+    return render(request, "printApp/index.html", context)
 
 def print_parameters(request):
     res = requests.get(URL_PRINT + '?f=pjson')
-    json = JsonResponse(res.json())
-    return json
+    return res.json()

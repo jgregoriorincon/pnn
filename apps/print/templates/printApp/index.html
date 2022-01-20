@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Print Web Services</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'printApp/css/style.css' %}">
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <form style="padding-top: 20px;" onsubmit="event.preventDefault(); validateMyForm();">
+            <div class="mb-3">
+              <label for="inputURL" class="form-label">URL Servicio Web Geográfico</label>
+              <input type="url" class="form-control" id="inputURL" aria-describedby="urlHelp" placeholder="https://services6.arcgis.com/CagbVUK5R9TktP2I/arcgis/rest/services/RESGUARDO_INDIGENA_LEGALIZADO/FeatureServer/0" value="https://services6.arcgis.com/CagbVUK5R9TktP2I/arcgis/rest/services/RESGUARDO_INDIGENA_LEGALIZADO/FeatureServer/0">
+              <div id="urlHelp" class="form-text">Utilizar un servicio tipo MapServer o FeatureServer.</div>
+            </div>
+            <div class="mb-3">
+                <label for="selectPlantilla" class="form-label">Plantilla de impresión</label>
+                <select id="selectPlantilla" class="form-select" aria-label="Default select example">
+                    <option selected>Seleccionar plantilla de impresión</option>
+                    {% for plantilla in plantillas %}
+                    <option value="{{plantilla}}">{{plantilla}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label for="textEscala" class="form-label">Parámetros de impresión</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Escala</span>
+                <input type="text" id="textEscala" class="form-control" placeholder="Escala" aria-label="Escala">
+                <span class="input-group-text">DPI</span>
+                <input type="number" id="textDPI" class="form-control" placeholder="DPI" aria-label="DPI" value="96">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btnImprimir">Imprimir</button>
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <script>
+
+        
+
+
+    </script>
+
+</body>
+
+</html>
